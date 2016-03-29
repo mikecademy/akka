@@ -1335,7 +1335,12 @@ object AkkaBuild extends Build {
     val akkaStream = Seq(
       // Removed internal methods https://github.com/akka/akka/pull/20162/files
       ProblemFilters.exclude[MissingMethodProblem]("akka.stream.impl.fusing.GraphInterpreter.fail"),
-      ProblemFilters.exclude[MissingMethodProblem]("akka.stream.stage.GraphStageLogic.failStage")
+      ProblemFilters.exclude[MissingMethodProblem]("akka.stream.stage.GraphStageLogic.failStage"),
+
+      // #19783
+      ProblemFilters.exclude[MissingMethodProblem]("akka.stream.impl.ActorRefBackpressureSinkStage.maxBuffer"),
+      ProblemFilters.exclude[MissingMethodProblem]("akka.stream.impl.io.OutputStreamSourceStage.maxBuffer"),
+      ProblemFilters.exclude[MissingMethodProblem]("akka.stream.impl.io.InputStreamSinkStage.maxBuffer")
     )
   }
 
